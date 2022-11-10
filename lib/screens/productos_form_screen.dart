@@ -1,36 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tienda_02/models/bebidas_local.dart';
-import 'package:tienda_02/providers/bebidas_provider.dart';
+import 'package:tienda_02/models/productos_local.dart';
+import 'package:tienda_02/providers/productos_provider.dart';
 
-import '../models/bebidas.dart';
+import '../models/productos.dart';
 
-class BebidasFormScreen extends StatefulWidget {
-  const BebidasFormScreen({super.key});
+class ProductosFormScreen extends StatefulWidget {
+  const ProductosFormScreen({super.key});
 
   @override
-  State<BebidasFormScreen> createState() => _BebidasFormScreenState();
+  State<ProductosFormScreen> createState() => _ProductosFormScreenState();
 }
 
-class _BebidasFormScreenState extends State<BebidasFormScreen> {
+enum Categoria { Dulces, Salados }
+
+class _ProductosFormScreenState extends State<ProductosFormScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final txtId = TextEditingController();
+  final txtProducto = TextEditingController();
+  final txtCantidad = TextEditingController();
+  final txtFecha = TextEditingController();
+  final txtImagen = TextEditingController();
+  Categoria? _catSeleccion = Categoria.Dulces;
+  bool? _estadoActivado = false;
+  bool formModificado = false;
+
   @override
   Widget build(BuildContext context) {
-    final txtId = TextEditingController();
-    final txtProducto = TextEditingController();
-    final txtCantidad = TextEditingController();
 //OBTENIENDO
-    final Bebidas? bebidas =
-        ModalRoute.of(context)!.settings.arguments as Bebidas?;
+    final Productos? productos =
+        ModalRoute.of(context)!.settings.arguments as Productos?;
 
-    if (bebidas != null) {
-      txtId.text = bebidas.id.toString();
-      txtProducto.text = bebidas.producto;
-      txtCantidad.text = bebidas.cantidad;
+    if (productos != null) {
+      txtId.text = productos.productosId.toString();
+      txtProducto.text = productos.producto;
+      txtFecha.text = productos.fecha;
+      txtCantidad.text = productos.cantidad;
+      txtImagen.text = productos.imagen;
+      if (productos.categoria == 'Categorias.abarrotes') {
+        _catSeleccion = Categoria.Dulces;
+      } else {
+        _catSeleccion = Categoria.Salados;
+      }
+
+      _estadoActivado = (productos.estado == 'true') ? true : false;
     } else {
       txtId.text = '0';
     }
     //BebidasLocal bebidasLocal = BebidasLocal();
-    final bebidasProvider = Provider.of<BebidasProvider>(context);
+    final productosProvider = Provider.of<ProductosProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('INGRESE EL PEDIDO'),
@@ -67,7 +85,7 @@ class _BebidasFormScreenState extends State<BebidasFormScreen> {
                     labelText: 'CANTIDAD',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0))),
-                controller: txtCantidad,
+                controller: txtFecha,
               ),
               const SizedBox(
                 height: 20,
@@ -78,28 +96,18 @@ class _BebidasFormScreenState extends State<BebidasFormScreen> {
                   //...
                   ScaffoldMessenger.of(context)
                       .showSnackBar(const SnackBar(content: Text('Guardando')));
-                  var bebidas = Bebidas(
+                  var productos = Productos(
                       id: '',
-                      bebidasId: 0,
+                      productosId: int.parse(txtId.text),
                       producto: txtProducto.text,
-                      cantidad: txtCantidad.text);
-                  bebidasProvider.postsaveBebidas(bebidas);
+                      cantidad: txtCantidad.text,
+                      fecha: txtFecha.text,
+                      imagen: txtImagen.text,
+                      categoria: _catSeleccion.toString(),
+                      estado: _estadoActivado.toString());
+                  productosProvider.postsaveProductos(productos);
 
-                  //AGREGANDO PEDIDO A LA LISTA
-                  /*if (int.parse(txtId.text) == 0) {
-                    bebidasLocal.agregarBebidasItem(Bebidas(
-                        id: bebidasLocal.obtenerCantidadBebidas() + 1,
-                        producto: txtProducto.text,
-                        cantidad: txtCantidad.text));
-                  } else {
-                    //EDITAR
-                    bebidasLocal.editarBebidasItem(Bebidas(
-                        id: int.parse(txtId.text),
-                        producto: txtProducto.text,
-                        cantidad: txtCantidad.text));
-                  }*/
-
-                  Navigator.pushReplacementNamed(context, 'bebidas');
+                  Navigator.pushReplacementNamed(context, 'productos');
                 },
               )
             ],
