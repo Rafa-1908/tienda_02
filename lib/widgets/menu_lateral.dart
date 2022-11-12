@@ -9,7 +9,13 @@ class MenuLateral extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(0),
         children: <Widget>[
-          const DrawerHeader(child: Text('INICIO')),
+          const DrawerHeader(
+            child: Text('INICIO'),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/bakerylogo.jpg'),
+                    fit: BoxFit.cover)),
+          ),
           ListTile(
             leading: const Icon(Icons.shop),
             title: Text('Principal'),
@@ -19,16 +25,16 @@ class MenuLateral extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.cookie),
-            title: Text('Abarrotes'),
+            title: Text('Productos'),
             onTap: (() {
-              Navigator.pushNamed(context, 'abarrotes');
+              Navigator.pushNamed(context, 'productos');
             }),
           ),
           ListTile(
             leading: const Icon(Icons.water),
-            title: Text('Bebidas'),
+            title: Text('Proveedores'),
             onTap: (() {
-              Navigator.pushNamed(context, 'bebidas');
+              Navigator.pushNamed(context, 'abarrotes');
             }),
           ),
           ListTile(
@@ -50,6 +56,13 @@ class MenuLateral extends StatelessWidget {
             title: Text('Limpieza'),
             onTap: (() {
               Navigator.pushNamed(context, 'limpieza');
+            }),
+          ),
+          ListTile(
+            leading: const Icon(Icons.shop),
+            title: Text('Reportes'),
+            onTap: (() {
+              Navigator.pushNamed(context, 'reportes');
             }),
           ),
         ],

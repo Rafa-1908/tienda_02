@@ -21,6 +21,6 @@ class ProductosResponse {
       );
 
   Map<String, dynamic> toMap() => {
-        "bebidas": List<dynamic>.from(productos.map((x) => x.toMap())),
+        "productos": List<dynamic>.from(productos.map((x) => x.toMap())),
       };
 }

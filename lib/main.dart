@@ -11,11 +11,13 @@ import 'package:tienda_02/screens/productos_screen.dart';
 import 'package:tienda_02/screens/productos_form_screen.dart';
 import 'package:tienda_02/screens/frutas_screen.dart';
 import 'package:tienda_02/screens/frutas_form_screen.dart';
+import 'package:tienda_02/screens/reporte_screen.dart';
 import 'package:tienda_02/screens/verduras_screen.dart';
 import 'package:tienda_02/screens/verduras_form_screen.dart';
 import 'package:tienda_02/screens/limpieza_screen.dart';
 import 'package:tienda_02/screens/limpieza_form_screen.dart';
 import 'package:tienda_02/screens/principal_screen.dart';
+import 'package:tienda_02/screens/reporte_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,8 +26,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return */
-
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ProductosProvider()),
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => VerdurasProvider()),
         ],
         child: MaterialApp(
-          title: 'TIENDITA DE DON PIERO',
+          title: 'PANADERÍA DE DON PIERO',
           debugShowCheckedModeBanner: false,
           initialRoute: 'principal',
           routes: {
@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
             'limpieza_form': (_) => const LimpiezaFormScreen(),
             'verduras': (_) => const VerdurasScreen(),
             'verduras_form': (_) => const VerdurasFormScreen(),
+            'reportes': (_) => const ReporteScreen(),
           },
         ));
   }

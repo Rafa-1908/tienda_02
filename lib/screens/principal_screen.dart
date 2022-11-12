@@ -25,7 +25,7 @@ class _PrincipalScreenState extends State<PrincipalScreen> {
       body: (
           //child: Text('BIENVENIDO A LA TIENDITA DE DON PIERO'),
           Container(
-        child: Image.asset('assets/Tiendita_01.jpg'),
+        child: Image.asset('assets/bakerylogo.jpg'),
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         margin: EdgeInsets.all(20),
         decoration: BoxDecoration(

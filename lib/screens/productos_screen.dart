@@ -15,9 +15,9 @@ class ProductosScreen extends StatefulWidget {
 class _ProductosScreenState extends State<ProductosScreen> {
   @override
   Widget build(BuildContext context) {
-    //final List<Bebidas> listaBebidas = BebidasLocal.listaBebidas;
     final productosProvider = Provider.of<ProductosProvider>(context);
     final List<Productos> listaProductos = productosProvider.listaProductos;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('PRODUCTOS'),
