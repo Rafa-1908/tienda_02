@@ -32,6 +32,7 @@ class _ProductosFormScreenState extends State<ProductosFormScreen> {
         ModalRoute.of(context)!.settings.arguments as Productos?;
     if (!formModificado) {
       if (productos != null) {
+        //EDITAR
         txtId.text = productos.productosId.toString();
         txtProducto.text = productos.producto;
         txtCantidad.text = productos.cantidad;
@@ -45,6 +46,7 @@ class _ProductosFormScreenState extends State<ProductosFormScreen> {
 
         _estadoActivado = (productos.estado == 'true') ? true : false;
       } else {
+        //NUEVO
         txtId.text = '0';
       }
     }
@@ -57,7 +59,7 @@ class _ProductosFormScreenState extends State<ProductosFormScreen> {
       body: Container(
         padding: const EdgeInsets.all(20.0),
         child: Form(
-          // key: ,
+          key: _formKey,
           child: Column(
             children: <Widget>[
               TextFormField(

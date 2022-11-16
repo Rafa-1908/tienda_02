@@ -9,7 +9,7 @@ import 'package:tienda_02/models/productos_report_response.dart';
 import 'package:tienda_02/models/productos_response.dart';
 
 class ProductosProvider extends ChangeNotifier {
-  String _baseUrl = '192.168.42.34:3999';
+  String _baseUrl = '192.168.42.80:3999';
 
   List<Productos> listaProductos = [];
   List<ProductosReport> listaProductosReport = [];

@@ -43,7 +43,8 @@ class _ProductosScreenState extends State<ProductosScreen> {
                             width: double.infinity,
                             height: 400,
                             child: FadeInImage(
-                                placeholder: AssetImage('assets/Croissant.jpg'),
+                                placeholder:
+                                    AssetImage('assets/Loadingemo.gif'),
                                 image:
                                     NetworkImage(listaProductos[index].imagen),
                                 fit: BoxFit.cover),
