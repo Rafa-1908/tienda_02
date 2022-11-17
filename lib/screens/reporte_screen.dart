@@ -16,6 +16,7 @@ class _ReporteScreenState extends State<ReporteScreen> {
   @override
   Widget build(BuildContext context) {
     final productosProvider = Provider.of<ProductosProvider>(context);
+
     final List<ProductosReport> listaProductosReport =
         productosProvider.listaProductosReport;
 

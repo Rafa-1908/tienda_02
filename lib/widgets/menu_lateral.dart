@@ -32,16 +32,16 @@ class MenuLateral extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.water),
-            title: Text('Proveedores'),
+            title: Text('Abarrotes'),
             onTap: (() {
               Navigator.pushNamed(context, 'abarrotes');
             }),
           ),
           ListTile(
             leading: const Icon(Icons.apple),
-            title: Text('Frutas'),
+            title: Text('Proveedores'),
             onTap: (() {
-              Navigator.pushNamed(context, 'frutas');
+              Navigator.pushNamed(context, 'proveedores');
             }),
           ),
           ListTile(
@@ -63,6 +63,13 @@ class MenuLateral extends StatelessWidget {
             title: Text('Reportes'),
             onTap: (() {
               Navigator.pushNamed(context, 'reportes');
+            }),
+          ),
+          ListTile(
+            leading: const Icon(Icons.shop),
+            title: Text('Reportes Proveedores'),
+            onTap: (() {
+              Navigator.pushNamed(context, 'reportes_proveedores');
             }),
           ),
         ],
