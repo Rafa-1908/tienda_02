@@ -51,7 +51,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
                           ),
                         ),
                         Container(
-                          color: Color.fromARGB(184, 146, 86, 34),
+                          color: Color.fromARGB(184, 161, 109, 63),
                           child: ListTile(
                             leading: Icon(Icons.card_giftcard),
                             title: Text(
@@ -59,13 +59,14 @@ class _ProductosScreenState extends State<ProductosScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(184, 34, 92, 88),
+                                color: Color.fromARGB(184, 144, 223, 218),
                               ),
                             ),
                             subtitle: Text(
                               listaProductos[index].fecha,
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.indigo),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 0, 0, 0)),
                             ),
                             trailing: const Icon(Icons.arrow_right),
                             onTap: () {
@@ -84,7 +85,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
         onPressed: () {
           agregarProductosItem();
         },
-        backgroundColor: Colors.red[400],
+        backgroundColor: Color.fromARGB(255, 26, 24, 24),
       ),
     );
   }
@@ -99,7 +100,7 @@ BoxDecoration _cardBorders() => BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-              color: Colors.lightBlueAccent,
+              color: Color.fromARGB(255, 144, 255, 64),
               offset: Offset(0, 10),
               blurRadius: 10)
         ]);

@@ -17,14 +17,14 @@ class MenuLateral extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           ListTile(
-            leading: const Icon(Icons.shop),
+            leading: const Icon(Icons.bakery_dining),
             title: Text('Principal'),
             onTap: () {
               Navigator.pushNamed(context, 'principal');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.cookie),
+            leading: const Icon(Icons.add_home),
             title: Text('Productos'),
             onTap: (() {
               Navigator.pushNamed(context, 'productos');
@@ -38,7 +38,7 @@ class MenuLateral extends StatelessWidget {
             }),
           ),
           ListTile(
-            leading: const Icon(Icons.apple),
+            leading: const Icon(Icons.local_shipping),
             title: Text('Proveedores'),
             onTap: (() {
               Navigator.pushNamed(context, 'proveedores');
@@ -59,14 +59,14 @@ class MenuLateral extends StatelessWidget {
             }),
           ),
           ListTile(
-            leading: const Icon(Icons.shop),
+            leading: const Icon(Icons.equalizer),
             title: Text('Reportes'),
             onTap: (() {
               Navigator.pushNamed(context, 'reportes');
             }),
           ),
           ListTile(
-            leading: const Icon(Icons.shop),
+            leading: const Icon(Icons.equalizer),
             title: Text('Reportes Proveedores'),
             onTap: (() {
               Navigator.pushNamed(context, 'reportes_proveedores');
