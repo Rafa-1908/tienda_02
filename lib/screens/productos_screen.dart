@@ -51,7 +51,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
                           ),
                         ),
                         Container(
-                          color: Color.fromARGB(184, 161, 109, 63),
+                          color: Color.fromARGB(184, 143, 108, 78),
                           child: ListTile(
                             leading: Icon(Icons.card_giftcard),
                             title: Text(
@@ -59,7 +59,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(184, 144, 223, 218),
+                                color: Color.fromARGB(184, 29, 31, 30),
                               ),
                             ),
                             subtitle: Text(
@@ -85,7 +85,7 @@ class _ProductosScreenState extends State<ProductosScreen> {
         onPressed: () {
           agregarProductosItem();
         },
-        backgroundColor: Color.fromARGB(255, 26, 24, 24),
+        backgroundColor: Color.fromARGB(255, 10, 112, 41),
       ),
     );
   }
