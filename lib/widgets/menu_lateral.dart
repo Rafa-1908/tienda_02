@@ -31,10 +31,10 @@ class MenuLateral extends StatelessWidget {
             }),
           ),
           ListTile(
-            leading: const Icon(Icons.water),
-            title: Text('Abarrotes'),
+            leading: const Icon(Icons.work),
+            title: Text('Trabajadores'),
             onTap: (() {
-              Navigator.pushNamed(context, 'abarrotes');
+              Navigator.pushNamed(context, 'trabajadores');
             }),
           ),
           ListTile(
@@ -52,10 +52,10 @@ class MenuLateral extends StatelessWidget {
             }),
           ),
           ListTile(
-            leading: const Icon(Icons.shop),
-            title: Text('Limpieza'),
+            leading: const Icon(Icons.people),
+            title: Text('Clientes'),
             onTap: (() {
-              Navigator.pushNamed(context, 'limpieza');
+              Navigator.pushNamed(context, 'clientes');
             }),
           ),
           ListTile(
@@ -70,6 +70,20 @@ class MenuLateral extends StatelessWidget {
             title: Text('Reportes Proveedores'),
             onTap: (() {
               Navigator.pushNamed(context, 'reportes_proveedores');
+            }),
+          ),
+          ListTile(
+            leading: const Icon(Icons.equalizer),
+            title: Text('Reportes Clientes'),
+            onTap: (() {
+              Navigator.pushNamed(context, 'reportes_clientes');
+            }),
+          ),
+          ListTile(
+            leading: const Icon(Icons.equalizer),
+            title: Text('Reportes Trabajadores'),
+            onTap: (() {
+              Navigator.pushNamed(context, 'reportes_trabajadores');
             }),
           ),
         ],
