@@ -1,8 +1,10 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tienda_02/models/productos.dart';
 import 'package:tienda_02/models/productos_local.dart';
 import 'package:tienda_02/providers/productos_provider.dart';
+import 'package:tienda_02/search/productos_search_delegate.dart';
 import 'package:tienda_02/widgets/menu_lateral.dart';
 
 class ProductosScreen extends StatefulWidget {
@@ -17,81 +19,122 @@ class _ProductosScreenState extends State<ProductosScreen> {
   Widget build(BuildContext context) {
     final productosProvider = Provider.of<ProductosProvider>(context);
     final List<Productos> listaProductos = productosProvider.listaProductos;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('PRODUCTOS'),
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                  context: context,
+                  delegate: ProductosSearchDelegate(listaProductos));
+            },
+          )
+        ],
       ),
       drawer: const MenuLateral(),
-      body: Center(
-        child: ListView.builder(
-            itemCount: listaProductos.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    margin: EdgeInsets.only(top: 30, bottom: 20),
-                    width: double.infinity,
-                    height: 350,
-                    decoration: _cardBorders(),
-                    child: Stack(
-                      alignment: Alignment.bottomLeft,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Container(
-                            width: double.infinity,
-                            height: 400,
-                            child: FadeInImage(
-                                placeholder:
-                                    AssetImage('assets/Loadingemo.gif'),
-                                image:
-                                    NetworkImage(listaProductos[index].imagen),
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                        Container(
-                          color: Color.fromARGB(184, 143, 108, 78),
-                          child: ListTile(
-                            leading: Icon(Icons.card_giftcard),
-                            title: Text(
-                              listaProductos[index].producto,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(184, 29, 31, 30),
-                              ),
-                            ),
-                            subtitle: Text(
-                              listaProductos[index].fecha,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                            ),
-                            trailing: const Icon(Icons.arrow_right),
-                            onTap: () {
-                              Navigator.pushNamed(context, 'productos_form',
-                                  arguments: listaProductos[index]);
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ));
-            }),
+      body: Container(
+        width: double.infinity,
+        height: size.height * 0.7,
+        color: Color.fromARGB(255, 241, 238, 230),
+        child: Swiper(
+          itemCount: listaProductos.length,
+          layout: SwiperLayout.STACK,
+          itemWidth: size.width * 0.8,
+          itemHeight: size.height * 0.7,
+          itemBuilder: (BuildContext context, index) {
+            return _cardProductos(listaProductos[index]);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          agregarProductosItem();
+          Navigator.pushNamed(context, 'productos_form');
         },
-        backgroundColor: Color.fromARGB(255, 10, 112, 41),
+        backgroundColor: Colors.green[400],
       ),
     );
   }
+}
 
-  void agregarProductosItem() {
-    Navigator.pushNamed(context, 'productos_form');
+class _cardProductos extends StatelessWidget {
+  final Productos productos;
+  _cardProductos(this.productos);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      margin: EdgeInsets.only(top: 140, bottom: 20),
+      width: double.infinity,
+      height: size.height * 0.5,
+      decoration: _cardBorders(),
+      child: Stack(
+        alignment: Alignment.bottomLeft,
+        children: [_ImagenFondo(productos), _EtiquetaPrecio(productos)],
+      ),
+    );
+  }
+}
+
+class _ImagenFondo extends StatelessWidget {
+  final Productos productos;
+  _ImagenFondo(this.productos);
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: double.infinity,
+        height: 400,
+        child: FadeInImage(
+          placeholder: AssetImage('assets/Loadingemo.gif'),
+          image: NetworkImage(productos.imagen),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class _EtiquetaPrecio extends StatelessWidget {
+  final Productos productos;
+  _EtiquetaPrecio(this.productos);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+          color: Colors.white70,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20))),
+      child: ListTile(
+        title: Text(
+          productos.producto,
+          style: const TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
+        ),
+        subtitle: Text(
+          productos.fecha,
+          style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.redAccent),
+        ),
+        trailing: IconButton(
+          icon: const Icon(Icons.edit, color: Colors.blueAccent),
+          onPressed: () {
+            Navigator.pushNamed(context, 'productos_form',
+                arguments: productos);
+          },
+        ),
+      ),
+    );
   }
 }
 

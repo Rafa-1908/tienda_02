@@ -20,6 +20,8 @@ import 'package:tienda_02/screens/principal_screen.dart';
 import 'package:tienda_02/screens/reporte_proveedores_screen.dart';
 import 'package:tienda_02/screens/reporte_clientes_screen.dart';
 import 'package:tienda_02/screens/reporte_trabajadores_screen.dart';
+import 'package:tienda_02/providers/venta_providers.dart';
+import 'package:tienda_02/screens/venta_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => ProveedoresProvider()),
           ChangeNotifierProvider(create: (_) => TrabajadoresProvider()),
           ChangeNotifierProvider(create: (_) => VerdurasProvider()),
+          ChangeNotifierProvider(create: (_) => VentaProvider()),
         ],
         child: MaterialApp(
           title: 'PANADERÍA DE DON PIERO',
@@ -56,6 +59,7 @@ class MyApp extends StatelessWidget {
             'reportes_proveedores': (_) => const ReporteProveScreen(),
             'reportes_clientes': (_) => const ReporteClientesScreen(),
             'reportes_trabajadores': (_) => const ReporteTrabajadoresScreen(),
+            'ventas': (_) => const VentaScreen(),
           },
         ));
   }
